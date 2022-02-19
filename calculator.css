@@ -1,0 +1,42 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    border: 0;
+}
+#main{
+    width: 90%;
+    margin: 10px auto;
+    max-width: 800px;
+}
+#display{
+    background-color: #444;
+    font-size: 48px;
+    padding: 10px;
+    text-align: right;
+    color: white;
+}
+#buttons span{
+    width: 25%;
+    height: 60px;
+    float: left;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+    font-size: 32px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    background-color: #ccc;
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+#buttons span:hover{
+    background-color: #68a;
+}
+
+#buttons .btn-number{
+    background-color: #ea8;
+}
