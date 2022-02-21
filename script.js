@@ -13,6 +13,7 @@ const squareButton = document.getElementById("square");
 const rootButton = document.getElementById("root");
 
 let lastOperation = "";
+let operationNum = "";
 let memory = 0;
 
 buttons.addEventListener("click", inputNumber);
@@ -25,12 +26,16 @@ function inputNumber(event) {
   if (data) {
     if (data === ".") {
       if (!display.textContent.includes(".")) {
-        display.textContent += data;
+        operationNum += data;
+        console.log(separate(Number(operationNum)));
+        display.textContent = separate(Number(operationNum));
       }
     } else {
-      display.textContent += data;
+      operationNum += data;
+      console.log(separate(Number(operationNum)));
+      display.textContent = separate(Number(operationNum));
       if (!display.textContent.includes(".")) {
-        display.textContent = Number(display.textContent);
+        display.textContent = separate(Number(operationNum));
       }
     }
   }
@@ -39,44 +44,49 @@ function inputNumber(event) {
 clearButton.addEventListener("click", () => {
   display.textContent = 0;
   lastOperation = "";
+  operationNum = "";
   memory = 0;
 });
 
 minusButton.addEventListener("click", () => {
   lastOperation = "minus";
-  memory = Number(display.textContent);
+  memory = Number(operationNum);
   display.textContent = 0;
+  operationNum = "";
 });
 
 plusButton.addEventListener("click", () => {
   lastOperation = "plus";
-  memory = Number(display.textContent);
+  memory = Number(operationNum);
   display.textContent = 0;
+  operationNum = "";
 });
 
 divideButton.addEventListener("click", () => {
   lastOperation = "divide";
-  memory = Number(display.textContent);
+  memory = Number(operationNum);
   display.textContent = 0;
+  operationNum = "";
 });
 
 multiplyButton.addEventListener("click", () => {
   lastOperation = "multiply";
-  memory = Number(display.textContent);
+  memory = Number(operationNum);
   display.textContent = 0;
+  operationNum = "";
 });
 
 equalButton.addEventListener("click", () => {
   if (lastOperation !== "") {
-    let number = Number(display.textContent);
+    let number = Number(operationNum);
     if (lastOperation == "minus") {
-      display.textContent = memory - number;
+      display.textContent = separate(memory - number);
     } else if (lastOperation == "plus") {
-      display.textContent = memory + number;
+      display.textContent = separate(memory + number);
     } else if (lastOperation == "divide") {
-      display.textContent = memory / number;
+      display.textContent = separate(memory / number);
     } else if (lastOperation == "multiply") {
-      display.textContent = memory * number;
+      display.textContent = separate(memory * number);
     }
     lastOperation = "";
   }
@@ -85,8 +95,9 @@ equalButton.addEventListener("click", () => {
 backButton.addEventListener("click", () => {
   if (display.textContent.length == 1) {
     display.textContent = 0;
+    operationNum = "";
   } else {
-    display.textContent = display.textContent.substring(
+    display.textContent = operationNum.substring(
       0,
       display.textContent.length - 1
     );
@@ -94,11 +105,22 @@ backButton.addEventListener("click", () => {
 });
 
 squareButton.addEventListener("click", () => {
-  display.textContent **= 2;
+  operationNum **= 2;
+  display.textContent = separate(operationNum);
   lastOperation = "";
 });
 
 rootButton.addEventListener("click", () => {
-  display.textContent = Math.sqrt(display.textContent);
+  display.textContent = separate(Math.sqrt(operationNum));
   lastOperation = "";
 });
+function separate(Number) {
+  Number += "";
+  Number = Number.replace(",", "");
+  x = Number.split(".");
+  y = x[0];
+  z = x.length > 1 ? "." + x[1] : "";
+  var rgx = /(\d+)(\d{3})/;
+  while (rgx.test(y)) y = y.replace(rgx, "$1" + "," + "$2");
+  return y + z;
+}
