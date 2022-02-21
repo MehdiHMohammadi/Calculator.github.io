@@ -11,33 +11,54 @@
   box-sizing: border-box;
   border: 0;
 }
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
 #main {
-  width: 90%;
+  width: 80%;
   margin: 10px auto;
-  max-width: 450px;
+  max-width: 400px;
 }
 #display {
-  background-color: rgb(255, 255, 255);
+  width: 85%;
+  background-color: rgb(245, 245, 245);
+  border-radius: 8px;
   font-size: 48px;
   padding: 10px;
   text-align: right;
   color: rgb(12, 2, 39);
 }
+#buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-items: center;
+}
 #buttons span {
-  width: 25%;
-  height: 60px;
+  margin: 3px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 400;
+  width: 20%;
+  height: 54px;
   float: left;
-  font-weight: bold;
+  font-weight: normal;
   padding: 10px;
   text-align: center;
   font-size: 32px;
-  border: 1px solid #ddd;
-  cursor: pointer;
+  border: 1px solid rgba(14, 7, 7, 0.137);
+  border-radius: 8px;
   transition-duration: 0.4s;
   background-color: #ccc;
   user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  -webkit-transition: 0.5s ease;
+  -o-transition: 0.5s ease;
+  transition: 0.5s ease;
 }
 
 #buttons span:hover {
@@ -45,5 +66,6 @@
 }
 
 #buttons .btn-number {
-  background-color: #ea8;
+  background-color: #003865;
+  color: #fff;
 }
